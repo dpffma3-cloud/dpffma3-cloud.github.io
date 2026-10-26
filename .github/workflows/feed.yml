@@ -1,0 +1,23 @@
+name: 블로그 목록 갱신
+on:
+  schedule:
+    - cron: "0 21 * * *"   # 매일 한국시간 06:00
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - run: python .github/scripts/feed_update.py
+      - name: 바뀐 것이 있으면 올린다
+        run: |
+          git config user.name "feed-bot"
+          git config user.email "feed-bot@users.noreply.github.com"
+          git add feed
+          git diff --cached --quiet || (git commit -m "블로그 목록 자동 갱신" && git push)
