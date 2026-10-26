@@ -83,11 +83,11 @@ section{padding:120px 0}
 .flow li.now::after{content:"";position:absolute;left:-46px;top:-1px;width:28px;height:28px;border-radius:50%;border:2px solid var(--accent);opacity:0}
 .flow em{display:inline-block;margin-top:10px;font-style:normal;font-size:14px;font-weight:700;color:var(--on-accent);background:var(--accent);padding:4px 12px;border-radius:var(--r)}
 @media all{
- .slide.on .bg{animation:kb 8s ease-out both}
+ .slide.on .bg{animation:kb 5.2s ease-out both}
  @keyframes kb{from{transform:scale(1.14)}to{transform:scale(1.04)}}
  .slide.on h1 span,.slide.on .lead{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
  .slide.on h1 span:nth-child(1){animation-delay:.25s}.slide.on h1 span:nth-child(2){animation-delay:.37s}.slide.on h1 span:nth-child(3){animation-delay:.49s}.slide.on .lead{animation-delay:.7s}
- .dots [aria-selected="true"] i::after{animation:bar 6.5s linear both}
+ .dots [aria-selected="true"] i::after{animation:bar 4.2s linear both}
  @keyframes bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
  @keyframes rise{to{opacity:1;transform:none}}
  /* 선이 그려지고 단계가 위에서부터 차례로 켜진 뒤, 첫 단계에 물결 세 번 */
@@ -343,7 +343,7 @@ const still=false;let i=0,t;const kick=v=>{if(still||!v)return;v.muted=true;v.pr
 function go(n){sl[i].classList.remove('on');ds[i].setAttribute('aria-selected','false');const v0=sl[i].querySelector('video');
  i=(n+sl.length)%sl.length;sl[i].classList.add('on');ds[i].setAttribute('aria-selected','true');
  const v=sl[i].querySelector('video');if(!still&&v){v.currentTime=0;kick(v)}setTimeout(()=>v0&&v0.pause(),1200);h.style.setProperty('--run',Date.now())}
-function auto(){clearInterval(t);if(!still)t=setInterval(()=>go(i+1),6500)}
+function auto(){clearInterval(t);if(!still)t=setInterval(()=>go(i+1),4200)}
 ds.forEach(d=>d.addEventListener('click',()=>{go(+d.dataset.i);auto()}));
 kick(sl[0].querySelector('video'));auto();
 document.addEventListener('visibilitychange',()=>document.hidden?clearInterval(t):auto());})();
