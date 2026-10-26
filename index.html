@@ -295,7 +295,7 @@ footer img{height:20px;width:auto}
 
 <section class="person" id="person">
   <div class="wrap">
-    <img class="pic" src="assets/portrait.webp" alt="박성진 대표세무사" width="900" height="1104" loading="lazy">
+    <img class="pic" src="assets/portrait.webp" alt="박성진 대표세무사" width="900" height="1170" loading="lazy">
     <div class="who">
       <p class="name"><strong>박성진</strong> 세무사</p>
       <p class="role">세무법인 이움 중앙지점 대표세무사</p>
@@ -364,7 +364,7 @@ footer img{height:20px;width:auto}
   <div class="wrap">
     <h2>세무 이야기는 블로그에 꾸준히 씁니다.</h2>
     <p class="sub">실제 상담에서 나온 질문을 글로 풀어 둡니다. 새 글이 올라오면 여기에도 자동으로 바뀝니다.</p>
-    <ul class="cards"><li><a href="https://blog.naver.com/tax4320/224444434763" target="_blank" rel="noopener"><img src="feed/httpsblognavercomtax4320224444434763.webp" alt="" width="640" height="360" loading="lazy"><span class="meta">네이버 블로그 · 2026.10.22</span><b>분양권 증여일과 신고기한부터, 배우자 증여 상담에서 확인한 다섯 가지</b></a></li>
+    <ul class="cards" id="feed-cards"><li><a href="https://blog.naver.com/tax4320/224444434763" target="_blank" rel="noopener"><img src="feed/httpsblognavercomtax4320224444434763.webp" alt="" width="640" height="360" loading="lazy"><span class="meta">네이버 블로그 · 2026.10.22</span><b>분양권 증여일과 신고기한부터, 배우자 증여 상담에서 확인한 다섯 가지</b></a></li>
 <li><a href="https://ctasjpark.com/51" target="_blank" rel="noopener"><img src="feed/httpsctasjparkcom51.webp" alt="" width="640" height="360" loading="lazy"><span class="meta">티스토리 · 2026.10.21</span><b>상속받은 부동산 양도세 취득가액, 상속세 0원이어도 감정평가가 갈라놓습니다 (소득세법 시행령 제163조 제9항&middot;대법원 2022두67357)</b></a></li>
 <li><a href="https://blog.naver.com/tax4320/224442433604" target="_blank" rel="noopener"><img src="feed/httpsblognavercomtax4320224442433604.webp" alt="" width="640" height="360" loading="lazy"><span class="meta">네이버 블로그 · 2026.10.21</span><b>상속받은 부동산 양도세, 상속세가 0원이어도 감정평가를 받아 두는 이유</b></a></li>
 <li><a href="https://ctasjpark.com/50" target="_blank" rel="noopener"><img src="feed/httpsctasjparkcom50.webp" alt="" width="640" height="360" loading="lazy"><span class="meta">티스토리 · 2026.10.20</span><b>DC형 퇴직연금 부담금, 성과급도 넣어야 하나 (근로자퇴직급여 보장법 제20조&middot;대법원 2022다255454)</b></a></li>
@@ -443,6 +443,12 @@ const ev=[];for(let y=today.getFullYear();y<=today.getFullYear()+1;y++)for(const
  for(const mm of (monthly?[1,2,3,4,5,6,7,8,9,10,11,12]:[m])){const d=shift(new Date(y,mm-1,day));if(d>=today)ev.push({d,name,why})}}
 ev.sort((a,b)=>a.d-b.d);const pick=[],seen=new Set();for(const e of ev){if(e.name.startsWith('원천세')&&seen.has('원천세'))continue;seen.add(e.name.slice(0,3));pick.push(e);if(pick.length===4)break}
 box.innerHTML=pick.map(e=>{const n=Math.round((e.d-today)/864e5);return '<li><span class="d">'+(n===0?'D-day':'D-'+n)+'</span><b>'+e.name+'</b><span class="t">'+e.d.getFullYear()+'년 '+(e.d.getMonth()+1)+'월 '+e.d.getDate()+'일('+W[e.d.getDay()]+')</span><span class="w">'+e.why+'</span></li>'}).join('')})();
+(()=>{const ul=document.getElementById('feed-cards');if(!ul)return;
+// 매일 새벽 GitHub가 feed/feed.json을 새로 받아 둔다. 페이지는 그 파일로 목록을 다시 그린다(못 읽으면 처음 목록 그대로).
+const e=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+fetch('feed/feed.json?v='+Math.floor(Date.now()/36e5)).then(r=>r.ok?r.json():null).then(a=>{if(!a||!a.length)return;
+ ul.innerHTML=a.slice(0,6).map(x=>'<li><a href="'+e(x.link)+'" target="_blank" rel="noopener">'+(x.thumb?'<img src="'+e(x.thumb)+'" alt="" width="640" height="360" loading="lazy">':'<span class="noimg"></span>')
+ +'<span class="meta">'+e(x.ch)+' · '+e(x.date)+'</span><b>'+e(x.title)+'</b></a></li>').join('')}).catch(()=>{})})();
 </script>
 
 <div class="float" aria-label="빠른 상담"><a href="http://pf.kakao.com/_IBafX/chat" target="_blank" rel="noopener">카카오톡</a><a href="tel:02-545-5328">02-545-5328</a></div>

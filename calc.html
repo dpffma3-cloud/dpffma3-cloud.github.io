@@ -362,6 +362,12 @@ const ev=[];for(let y=today.getFullYear();y<=today.getFullYear()+1;y++)for(const
  for(const mm of (monthly?[1,2,3,4,5,6,7,8,9,10,11,12]:[m])){const d=shift(new Date(y,mm-1,day));if(d>=today)ev.push({d,name,why})}}
 ev.sort((a,b)=>a.d-b.d);const pick=[],seen=new Set();for(const e of ev){if(e.name.startsWith('원천세')&&seen.has('원천세'))continue;seen.add(e.name.slice(0,3));pick.push(e);if(pick.length===4)break}
 box.innerHTML=pick.map(e=>{const n=Math.round((e.d-today)/864e5);return '<li><span class="d">'+(n===0?'D-day':'D-'+n)+'</span><b>'+e.name+'</b><span class="t">'+e.d.getFullYear()+'년 '+(e.d.getMonth()+1)+'월 '+e.d.getDate()+'일('+W[e.d.getDay()]+')</span><span class="w">'+e.why+'</span></li>'}).join('')})();
+(()=>{const ul=document.getElementById('feed-cards');if(!ul)return;
+// 매일 새벽 GitHub가 feed/feed.json을 새로 받아 둔다. 페이지는 그 파일로 목록을 다시 그린다(못 읽으면 처음 목록 그대로).
+const e=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+fetch('feed/feed.json?v='+Math.floor(Date.now()/36e5)).then(r=>r.ok?r.json():null).then(a=>{if(!a||!a.length)return;
+ ul.innerHTML=a.slice(0,6).map(x=>'<li><a href="'+e(x.link)+'" target="_blank" rel="noopener">'+(x.thumb?'<img src="'+e(x.thumb)+'" alt="" width="640" height="360" loading="lazy">':'<span class="noimg"></span>')
+ +'<span class="meta">'+e(x.ch)+' · '+e(x.date)+'</span><b>'+e(x.title)+'</b></a></li>').join('')}).catch(()=>{})})();
 </script>
 
 <div class="float" aria-label="빠른 상담"><a href="http://pf.kakao.com/_IBafX/chat" target="_blank" rel="noopener">카카오톡</a><a href="tel:02-545-5328">02-545-5328</a></div>
