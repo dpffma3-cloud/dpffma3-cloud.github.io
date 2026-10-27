@@ -389,6 +389,36 @@ footer img{height:20px;width:auto}
  main .steps li:nth-child(even){padding-left:10px;border-left:1px solid var(--rule)}
  .biz .wrap{gap:14px}.biz .for{margin-top:6px;font-size:14px}.biz .ic{width:34px;height:34px;margin-bottom:6px}.biz h2{font-size:24px}.biz ul.do li{padding:7px 0 7px 26px;font-size:14px}.biz ul.do li::before{top:13px}.biz .need{margin-top:10px;font-size:12.5px}.biz .acts{margin-top:12px}.biz .acts .btn{height:42px;font-size:14px;padding:0 16px}.biz h3{margin-bottom:6px}
 }
+/* 아이폰 사파리: 주소창·도구막대 때문에 실제 높이가 짧다(430x700 기준으로 맞춤). 머리글·하단 줄을 얇게, 칸 내용을 더 접는다 */
+@media (max-width:960px){
+ .top .wrap{height:52px}.top .logo img{height:19px}
+ html{scroll-padding-top:52px}
+ .top{height:52px}
+ .callbar{height:46px}.callbar a,.callbar button{padding:0;display:flex;align-items:center;justify-content:center;font-size:14px}
+ body{padding-bottom:46px}
+ main:not(.tool)>section:not(.hero):not(.phero),main:not(.tool)>section.showcase,main:not(.tool)>section.rules{min-height:calc(100svh - 98px);padding:22px 0}
+ main .hero{height:calc(100svh - 98px);min-height:500px}
+ .slide .wrap{padding-bottom:120px}
+ .hero h1{font-size:40px}.hero .lead{font-size:14.5px;margin-top:14px}
+ .hero-ui{bottom:22px}.hero .btn{height:46px;font-size:15px}
+ .chip{white-space:nowrap}
+ .when .grid li{padding:12px 10px}.when .ic{width:22px;height:22px;margin-bottom:4px}.when h3{font-size:14.5px}
+ .career-s .work dd{display:none}.career-s .work{grid-template-columns:1fr 1fr;column-gap:12px}.career-s .work div{padding:5px 0}
+ .showcase .photo{display:none}
+ .rules li{padding:10px 0}.rules h3{font-size:17px}.rules p{font-size:13px}.rules ul{margin-top:14px}
+ .call .num{font-size:34px}.call .sub{font-size:14px}.place{margin-top:12px}.place div,.place div+div{padding:7px 0}.place dt{font-size:12.5px}.place dd{font-size:13.5px;margin-top:2px}
+ main .mapsec .mapbox{height:calc(100svh - 320px)}
+ .person .intro{font-size:14px}
+ .when .grid li{padding:10px 10px}.when .sub{display:none}
+}
+@media (max-width:960px) and (max-height:690px){
+ main:not(.tool)>section:not(.hero):not(.phero){padding:14px 0}
+ main:not(.tool) h2{font-size:21px}
+ .person .wrap .picw{max-width:130px}.person .name{font-size:28px}
+ .faq summary{padding:10px 30px 10px 0;font-size:14.5px}
+ .call .num{font-size:30px}.place div:nth-child(3){display:none}
+ .biz ul.do li{padding:5px 0 5px 24px;font-size:13.5px}.biz ul.do li::before{top:10px}.biz .need{display:none}.biz .for{font-size:13.5px}
+}
 /* 오른쪽 영문 목차 */
 .sidx{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:24;display:flex;flex-direction:column;gap:6px;--c:var(--ink)}
 .sidx.dark{--c:#fff}
