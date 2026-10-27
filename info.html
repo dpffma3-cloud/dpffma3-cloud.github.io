@@ -428,7 +428,9 @@ footer img{height:20px;width:auto}
 .sidx a.on span,.sidx a:hover span{opacity:1;transform:none}
 .sidx a.on i{opacity:1;width:9px;height:9px;box-shadow:0 0 0 4px rgba(127,127,127,.18)}
 main.sub~.sidx{display:none}
-@media (max-width:1300px){.sidx{display:none}}
+@media (min-width:961px) and (max-width:1300px){.sidx{display:none}}
+/* 모바일 목차: 점만, 지금 칸 이름만 작은 알약으로 */
+@media (max-width:960px){.sidx{right:5px;gap:2px;top:52%}.sidx a{height:16px;gap:6px}.sidx i{width:5px;height:5px}.sidx a.on i{width:7px;height:7px;box-shadow:none}.sidx span{font-size:9px;letter-spacing:.1em;padding:2px 7px;border-radius:999px;background:rgba(12,33,65,.78);color:#fff}.sidx a:not(.on) span{display:none}.sidx.dark span{background:rgba(255,255,255,.88);color:#0C2141}}
 /* 상담 예약 창 */
 .book{margin:auto;border:0;border-radius:10px;padding:0;width:min(620px,calc(100% - 32px));max-height:calc(100dvh - 40px);background:var(--bg);color:var(--text);box-shadow:0 30px 80px rgba(0,0,0,.35)}
 .book::backdrop{background:rgba(8,20,42,.6);backdrop-filter:blur(3px)}
